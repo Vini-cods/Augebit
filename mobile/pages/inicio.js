@@ -429,6 +429,12 @@ const SidebarMenu = () => {
       </ScrollView>
       <View>
           <Image style={styles.logoSegunda} source={require('../assets/AugebitQualidade.png')}/>
+          <Text style={styles.teext}>
+          Conheça um pouco sobre a empresa
+        </Text>
+            <Text style={styles.textoComum}> 
+            A Augebit é uma empresa de tecnologia que oferece soluções personalizadas em TI com foco em inovação, eficiência e resultados. Atuamos com compromisso e transparência para impulsionar o crescimento dos nossos clientes.
+            </Text>
       </View>
     </SafeAreaView>
   );
@@ -677,12 +683,30 @@ const styles = StyleSheet.create({
     width: 200,
     height: 40,
     marginLeft: 50,
-    bottom: 390, 
+    bottom: 370, 
     left: 50
   },
 
   carouselSection: {
     top: 30
+  },
+
+  teext: {
+    marginLeft: 50,
+    bottom: 360, 
+    left: 20,
+    color: '#6E6EFF',
+    fontWeight: 'semibold',
+    fontFamily: 'oi'
+  },
+
+  textoComum: {
+    fontFamily: 'Popi',
+    fontSize: 10,
+    width: 300,
+    left: 20,
+    bottom: 360, 
+    fontWeight: 600
   }
 });
 
