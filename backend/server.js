@@ -176,11 +176,11 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log('SERVIDOR INICIADO COM SUCESSO!');
   console.log(`Porta: ${PORT}`);
   console.log(`IP Local: http://localhost:${PORT}`);
-  console.log(`IP Rede: http://10.136.23.37:${PORT}`);
+  console.log(`IP Rede: http://10.136.23.234:${PORT}`);
   console.log('TESTES DISPONÍVEIS:');
-  console.log(`• API Status: http://10.136.23.37:${PORT}/`);
-  console.log(`• Teste DB: http://10.136.23.37:${PORT}/test-db`);
-  console.log(`• Funcionários: http://10.136.23.37:${PORT}/cadastrof`);
+  console.log(`• API Status: http://10.136.23.234:${PORT}/`);
+  console.log(`• Teste DB: http://10.136.23.234:${PORT}/test-db`);
+  console.log(`• Funcionários: http://10.136.23.234:${PORT}/cadastrof`);
 });
 
 process.on('uncaughtException', (error) => {

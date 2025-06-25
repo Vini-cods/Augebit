@@ -37,7 +37,7 @@ export default function LoginScreen() {
   const [showNotification, setShowNotification] = useState(false);
 
   const api = axios.create({
-    baseURL: "http://10.136.23.92:3000",
+    baseURL: "http://10.136.23.234:3000",
     timeout: 10000,
     headers: {
       "Content-Type": "application/json",
