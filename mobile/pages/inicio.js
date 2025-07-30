@@ -883,7 +883,7 @@ const styles = StyleSheet.create({
   activeIndicator: {
     backgroundColor: '#22d3ee',
   },
-  purpleSection: {
+purpleSection: {
     paddingVertical: 50,
     paddingHorizontal: 30,
   },
