@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from "react";
 import {
   View,
   Text,
@@ -12,53 +12,55 @@ import {
   TouchableWithoutFeedback,
   Alert,
   Dimensions,
-  FlatList
-} from 'react-native';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useNavigation } from '@react-navigation/native';
+  FlatList,
+} from "react-native";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get("window");
 
 const CursoProdutividade = () => {
   const navigation = useNavigation();
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [cursoInscrito, setCursoInscrito] = useState(false);
-  
-  // Sidebar states
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const slideAnim = useRef(new Animated.Value(-width)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const topicos = [
-    { 
-      titulo: 'Módulo 1: Introdução à Produtividade', 
-      conteudo: '• O que é produtividade\n• Diferença entre estar ocupado e ser produtivo\n• Mitos sobre produtividade',
-      icon: 'rocket-outline'
+    {
+      titulo: "Módulo 1: Introdução à Produtividade",
+      conteudo:
+        "• O que é produtividade\n• Diferença entre estar ocupado e ser produtivo\n• Mitos sobre produtividade",
+      icon: "rocket-outline",
     },
-    { 
-      titulo: 'Módulo 2: Autoconhecimento e Diagnóstico', 
-      conteudo: '• Como você usa o seu tempo hoje?\n• Rastreadores de tempo e autoavaliação\n• Identificação de ladrões de tempo',
-      icon: 'analytics-outline'
+    {
+      titulo: "Módulo 2: Autoconhecimento e Diagnóstico",
+      conteudo:
+        "• Como você usa o seu tempo hoje?\n• Rastreadores de tempo e autoavaliação\n• Identificação de ladrões de tempo",
+      icon: "analytics-outline",
     },
-    { 
-      titulo: 'Módulo 3: Técnicas de Gestão do Tempo', 
-      conteudo: '• Matriz de Eisenhower\n• Técnica Pomodoro\n• Método GTD\n• Planejamento semanal e diário',
-      icon: 'time-outline'
+    {
+      titulo: "Módulo 3: Técnicas de Gestão do Tempo",
+      conteudo:
+        "• Matriz de Eisenhower\n• Técnica Pomodoro\n• Método GTD\n• Planejamento semanal e diário",
+      icon: "time-outline",
     },
-    { 
-      titulo: 'Módulo 4: Organização Pessoal', 
-      conteudo: '• Organização de e-mails e tarefas\n• Ambiente físico e digital\n• Multitarefa: quando evitar',
-      icon: 'folder-outline'
+    {
+      titulo: "Módulo 4: Organização Pessoal",
+      conteudo:
+        "• Organização de e-mails e tarefas\n• Ambiente físico e digital\n• Multitarefa: quando evitar",
+      icon: "folder-outline",
     },
-    { 
-      titulo: 'Módulo final: Hábitos e Rotina', 
-      conteudo: '• Criar hábitos produtivos\n• Rotina matinal\n• Lidar com imprevistos\n• Equilíbrio e pausas',
-      icon: 'repeat-outline'
+    {
+      titulo: "Módulo final: Hábitos e Rotina",
+      conteudo:
+        "• Criar hábitos produtivos\n• Rotina matinal\n• Lidar com imprevistos\n• Equilíbrio e pausas",
+      icon: "repeat-outline",
     },
   ];
 
-  // Menu items
   const menuItems = [
     { id: 1, icon: "home", label: "Início", screen: "Inicio" },
     { id: 2, icon: "calendar", label: "Agendamentos", screen: "Agendamento" },
@@ -71,21 +73,22 @@ const CursoProdutividade = () => {
 
   const handleParticipar = () => {
     Alert.alert(
-      "Confirmação",
+      "Confirmação", 
       "Deseja se inscrever neste curso?",
       [
         {
           text: "Cancelar",
-          style: "cancel"
+          style: "cancel",
         },
-        { 
-          text: "Confirmar", 
+        {
+          text: "Confirmar",
           onPress: () => {
             setCursoInscrito(true);
             Alert.alert("Sucesso", "Inscrição realizada com sucesso!");
-          }
-        }
-      ]
+          },
+        },
+      ],
+      { cancelable: true }
     );
   };
 
@@ -94,11 +97,13 @@ const CursoProdutividade = () => {
   };
 
   const renderMenuItem = ({ item }) => (
-    <TouchableOpacity 
-      style={styles.menuItem} 
+    <TouchableOpacity
+      style={styles.menuItem}
       onPress={() => {
         setIsSidebarOpen(false);
-        navigation.navigate(item.screen);
+        if (item.screen) {
+          navigation.navigate(item.screen);
+        }
       }}
     >
       <Ionicons name={item.icon} size={20} color="#333" style={styles.menuIcon} />
@@ -106,7 +111,6 @@ const CursoProdutividade = () => {
     </TouchableOpacity>
   );
 
-  // Sidebar animations
   React.useEffect(() => {
     if (isSidebarOpen) {
       Animated.parallel([
@@ -146,9 +150,9 @@ const CursoProdutividade = () => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={24} color="#7C3AED" />
         </TouchableOpacity>
-        
+
         <Text style={styles.headerTitle}>Produtividade no Trabalho</Text>
-        
+
         <TouchableOpacity onPress={toggleSidebar}>
           <MaterialIcons name="menu" size={28} color="#7C3AED" />
         </TouchableOpacity>
@@ -156,7 +160,7 @@ const CursoProdutividade = () => {
 
       <ScrollView contentContainerStyle={styles.content}>
         <LinearGradient
-          colors={['#7C3AED', '#5B21B6']}
+          colors={["#7C3AED", "#5B21B6"]}
           style={styles.gradientHeader}
         >
           <Text style={styles.title}>Produtividade no Trabalho</Text>
@@ -180,11 +184,8 @@ const CursoProdutividade = () => {
           </View>
         </View>
 
-        <TouchableOpacity 
-          style={[
-            styles.button, 
-            cursoInscrito && styles.buttonInscrito
-          ]}
+        <TouchableOpacity
+          style={[styles.button, cursoInscrito && styles.buttonInscrito]}
           onPress={handleParticipar}
           disabled={cursoInscrito}
         >
@@ -197,18 +198,18 @@ const CursoProdutividade = () => {
 
         {topicos.map((topico, index) => (
           <View key={index} style={styles.card}>
-            <TouchableOpacity 
-              onPress={() => toggleTopico(index)} 
+            <TouchableOpacity
+              onPress={() => toggleTopico(index)}
               style={styles.cardHeader}
             >
               <View style={styles.cardHeaderContent}>
                 <Ionicons name={topico.icon} size={24} color="#7C3AED" />
                 <Text style={styles.cardTitle}>{topico.titulo}</Text>
               </View>
-              <Ionicons 
-                name={expandedIndex === index ? 'chevron-up' : 'chevron-down'} 
-                size={20} 
-                color="#6B7280" 
+              <Ionicons
+                name={expandedIndex === index ? "chevron-up" : "chevron-down"}
+                size={20}
+                color="#6B7280"
               />
             </TouchableOpacity>
 
@@ -226,7 +227,7 @@ const CursoProdutividade = () => {
             "Priorizar tarefas com clareza",
             "Usar técnicas para manter o foco",
             "Criar rotinas de trabalho eficientes",
-            "Equilibrar produtividade e bem-estar"
+            "Equilibrar produtividade e bem-estar",
           ].map((item, index) => (
             <View key={index} style={styles.outcomeItem}>
               <Ionicons name="checkmark-circle" size={20} color="#10B981" />
@@ -248,20 +249,25 @@ const CursoProdutividade = () => {
             <View style={styles.overlayTouch} />
           </TouchableWithoutFeedback>
         </Animated.View>
-        
-        <Animated.View style={[styles.sidebar, { left: slideAnim }]}>
-          <View style={styles.sidebarContent}>
-            <View style={styles.sidebarHeader}>
-              <Text style={styles.userName}>Menu</Text>
-            </View>
 
-            <FlatList
-              data={menuItems}
-              renderItem={renderMenuItem}
-              keyExtractor={(item) => item.id.toString()}
-              scrollEnabled={false}
-            />
+        <Animated.View style={[styles.sidebar, { left: slideAnim }]}>
+          <View style={styles.sidebarHeader}>
+            <Text style={styles.sidebarTitle}>Menu</Text>
+            <TouchableOpacity 
+              onPress={() => setIsSidebarOpen(false)}
+              style={styles.closeButton}
+            >
+              <Ionicons name="close" size={24} color="#7C3AED" />
+            </TouchableOpacity>
           </View>
+
+          <FlatList
+            data={menuItems}
+            renderItem={renderMenuItem}
+            keyExtractor={(item) => item.id.toString()}
+            scrollEnabled={false}
+            style={styles.menuList}
+          />
         </Animated.View>
       </Modal>
     </SafeAreaView>
@@ -271,20 +277,23 @@ const CursoProdutividade = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 15,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB',
+    borderBottomColor: "#E5E7EB",
   },
   headerTitle: {
     fontSize: 18,
-    fontWeight: '600',
-    color: '#1F2937',
+    fontWeight: "600",
+    color: "#1F2937",
+  },
+  content: {
+    paddingBottom: 30,
   },
   gradientHeader: {
     padding: 20,
@@ -293,50 +302,50 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    fontWeight: 'bold',
-    color: '#fff',
+    fontWeight: "bold",
+    color: "#fff",
     marginBottom: 8,
   },
   description: {
     fontSize: 16,
-    color: '#E9D5FF',
+    color: "#E9D5FF",
     lineHeight: 22,
   },
   detailsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     margin: 15,
   },
   detailItem: {
-    alignItems: 'center',
+    alignItems: "center",
     flex: 1,
   },
   detailText: {
     fontSize: 14,
-    color: '#4B5563',
+    color: "#4B5563",
     marginTop: 5,
-    textAlign: 'center',
+    textAlign: "center",
   },
   button: {
-    backgroundColor: '#7C3AED',
+    backgroundColor: "#7C3AED",
     padding: 16,
     borderRadius: 12,
     marginHorizontal: 15,
     marginVertical: 10,
   },
   buttonInscrito: {
-    backgroundColor: '#10B981',
+    backgroundColor: "#10B981",
   },
   buttonText: {
-    color: '#fff',
-    fontWeight: '600',
+    color: "#fff",
+    fontWeight: "600",
     fontSize: 16,
-    textAlign: 'center',
+    textAlign: "center",
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: '600',
-    color: '#1F2937',
+    fontWeight: "600",
+    color: "#1F2937",
     marginHorizontal: 15,
     marginVertical: 15,
   },
@@ -344,8 +353,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     marginBottom: 10,
     borderRadius: 12,
-    backgroundColor: '#fff',
-    shadowColor: '#000',
+    backgroundColor: "#fff",
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 6,
@@ -353,19 +362,19 @@ const styles = StyleSheet.create({
   },
   cardHeader: {
     padding: 15,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   cardHeaderContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     flex: 1,
   },
   cardTitle: {
     fontSize: 16,
-    fontWeight: '500',
-    color: '#111827',
+    fontWeight: "500",
+    color: "#111827",
     marginLeft: 10,
     flexShrink: 1,
   },
@@ -375,7 +384,7 @@ const styles = StyleSheet.create({
   },
   cardText: {
     fontSize: 14,
-    color: '#4B5563',
+    color: "#4B5563",
     lineHeight: 22,
   },
   learningOutcomes: {
@@ -384,58 +393,67 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   outcomeItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 10,
     paddingHorizontal: 5,
   },
   outcomeText: {
     fontSize: 14,
-    color: '#374151',
+    color: "#374151",
     marginLeft: 10,
   },
   // Sidebar styles
   overlay: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
-  sidebar: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    width: '75%',
-    backgroundColor: 'white',
-  },
-  sidebarContent: {
+  overlayTouch: {
     flex: 1,
   },
+  sidebar: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    width: "75%",
+    backgroundColor: "white",
+  },
   sidebarHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     padding: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB',
+    borderBottomColor: "#E5E7EB",
   },
-  userName: {
+  sidebarTitle: {
     fontSize: 18,
-    fontWeight: '600',
-    color: '#1F2937',
+    fontWeight: "600",
+    color: "#1F2937",
+  },
+  closeButton: {
+    padding: 5,
+  },
+  menuList: {
+    paddingTop: 10,
   },
   menuItem: {
     padding: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#F3F4F6',
-    flexDirection: 'row',
-    alignItems: 'center',
+    borderBottomColor: "#F3F4F6",
+    flexDirection: "row",
+    alignItems: "center",
   },
   menuIcon: {
     marginRight: 10,
   },
   menuLabel: {
     fontSize: 16,
-    color: '#1F2937',
+    color: "#1F2937",
   },
 });
 

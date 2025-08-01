@@ -31,31 +31,31 @@ const IntegratedCarousel = ({ data, autoPlay = true, autoPlayInterval = 3000, na
   const defaultData = [
     {
       id: 1,
-      image: 'https://via.placeholder.com/400x200/FF6B6B/FFFFFF?text=Novidades+2024',
-      title: 'Novidades 2024',
+      image: './assets/produtividade.jpg',
+      title: 'Produtividade',
       description: 'Descubra as últimas funcionalidades da plataforma',
       navigationTarget: 'Novidades',
     },
     {
       id: 2,
-      image: 'https://via.placeholder.com/400x200/4ECDC4/FFFFFF?text=Agendamentos',
-      title: 'Agendamentos Inteligentes',
+      image: './assets/equilibrio.jpg',
+      title: 'equilibrio',
       description: 'Sistema automatizado de consultas e sessões',
       navigationTarget: 'Agendamento',
       params: { feature: 'smart' }
     },
     {
       id: 3,
-      image: 'https://via.placeholder.com/400x200/45B7D1/FFFFFF?text=Cursos+Online',
-      title: 'Cursos Mentais',
+      image: './assets/ultimo.jpg',
+      title: 'Bem-estar',
       description: 'Aprenda técnicas de bem-estar e desenvolvimento',
       navigationTarget: 'Cursos',
       params: { category: 'mental' }
     },
     {
       id: 4,
-      image: 'https://via.placeholder.com/400x200/96CEB4/FFFFFF?text=Suporte+24h',
-      title: 'Suporte 24h',
+      image: './assets/tempo.jpg',
+      title: 'Tempo',
       description: 'Atendimento especializado sempre disponível',
       navigationTarget: 'Suporte',
       params: { type: 'premium' }
