@@ -41,7 +41,7 @@ const IntegratedCarousel = ({ data, autoPlay = true, autoPlayInterval = 3000, na
       image: 'https://via.placeholder.com/400x200/4ECDC4/FFFFFF?text=Agendamentos',
       title: 'Agendamentos Inteligentes',
       description: 'Sistema automatizado de consultas e sessões',
-      navigationTarget: 'Agendamentos',
+      navigationTarget: 'Agendamento',
       params: { feature: 'smart' }
     },
     {
@@ -264,17 +264,15 @@ const AugebitApp = () => {
     }
   ];
 
-  const menuItems = [
-    { id: 1, icon: "grid", label: "Dashboard" },
-    { id: 2, icon: "cube", label: "Products" },
-    { id: 3, icon: "calendar", label: "Schedule" },
-    { id: 4, icon: "list", label: "My Task" },
-    { id: 5, icon: "bar-chart", label: "Reporting" }
-  ];
+const menuItems = [
+  { id: 0, icon: "home", label: "Início", screen: "Inicio" },  
+  { id: 1, icon: "calendar", label: "Agendamentos", screen: "Agendamento" },
+  { id: 2, icon: "cube", label: "Cursos", screen: "Cursos" },
+];
 
   const accountItems = [
-    { id: 1, icon: "person", label: "User" },
-    { id: 2, icon: "chatbubbles", label: "Messages" }
+    { id: 1, icon: "person", label: "Usuário" },
+    { id: 2, icon: "chatbubbles", label: "Mensagens" }
   ];
 
   // Carregar dados do usuário ao iniciar a tela
@@ -385,11 +383,21 @@ const AugebitApp = () => {
   };
 
   const renderMenuItem = ({ item }) => (
-    <TouchableOpacity style={styles.menuItem}>
-      <Ionicons name={item.icon} size={20} color="#333" style={styles.menuIcon} />
-      <Text style={styles.menuLabel}>{item.label}</Text>
-    </TouchableOpacity>
-  );
+  <TouchableOpacity 
+    style={styles.menuItem} 
+    onPress={() => {
+      setIsSidebarOpen(false);
+      if (item.screen === "Inicio") {
+        navigation.navigate("Inicio");  // Navegação específica para Home
+      } else if (item.screen) {
+        navigation.navigate(item.screen);
+      }
+    }}
+  >
+    <Ionicons name={item.icon} size={20} color="#333" style={styles.menuIcon} />
+    <Text style={styles.menuLabel}>{item.label}</Text>
+  </TouchableOpacity>
+);
 
   const renderResourceCard = ({ item, index }) => (
     <View style={[styles.resourceCard, { marginLeft: index === 0 ? 20 : 10, marginRight: index === resources.length - 1 ? 20 : 10 }]}>

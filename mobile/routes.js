@@ -1,6 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import Bem_Vindo from './pages/index';
 import Inicio from './pages/inicio';
+import Agendamento from './pages/Agendamento';
 
 const Stack = createStackNavigator();
 
@@ -13,12 +14,17 @@ export default function Routes() {
                 options={{ headerShown: false }}
             />
 
-             <Stack.Screen
+            <Stack.Screen
                 name="Inicio"
                 component={Inicio}
                 options={{ headerShown: false }}
             />
 
+            <Stack.Screen
+                name="Agendamento"
+                component={Agendamento}
+                options={{ headerShown: false }}
+            />
 
         </Stack.Navigator>
     );

@@ -1,4 +1,3 @@
-
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
@@ -43,8 +42,8 @@ pool.getConnection((err, connection) => {
     console.log('VERIFICAÇÕES NECESSÁRIAS:');
     console.log('1. XAMPP está rodando?');
     console.log('2. MySQL está ativo no XAMPP?');
-    console.log('3. Banco "estoque" existe?');
-    console.log('4. Tabela "funcionarios" existe?');
+    console.log('3. Banco "augebit" existe?');
+    console.log('4. Tabelas necessárias existem?');
   } else {
     console.log('Conexão com banco de dados estabelecida!');
     connection.release();
@@ -132,7 +131,6 @@ app.post('/login', (req, res) => {
     });
   }
   
-  // Incluir NomeCompleto na consulta
   const query = 'SELECT id, email, nome, telefone, setor FROM cadastrof WHERE email = ? AND senha = ?';
   
   req.dbConnection.query(query, [email, senha], (err, results) => {
@@ -166,6 +164,39 @@ app.post('/login', (req, res) => {
   });
 });
 
+// Rota para agendamentos
+app.post('/agendamentos', (req, res) => {
+  console.log('Recebendo agendamento:', req.body);
+  
+  const { nome, cpf, telefone, email, data, horario, profissional } = req.body;
+  
+  if (!nome || !cpf || !telefone || !email || !data || !horario || !profissional) {
+    return res.status(400).json({
+      success: false,
+      message: 'Todos os campos são obrigatórios'
+    });
+  }
+
+  const query = 'INSERT INTO agendamentos (nome, cpf, telefone, email, data, horario, profissional) VALUES (?, ?, ?, ?, ?, ?, ?)';
+  
+  req.dbConnection.query(query, [nome, cpf, telefone, email, data, horario, profissional], (err, results) => {
+    if (err) {
+      console.error('Erro ao inserir agendamento:', err);
+      return res.status(500).json({
+        success: false,
+        message: 'Erro ao agendar consulta',
+        details: err.message
+      });
+    }
+    
+    res.json({
+      success: true,
+      message: 'Agendamento realizado com sucesso!',
+      agendamentoId: results.insertId
+    });
+  });
+});
+
 // Rota não encontrada
 app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Rota não encontrada' });
@@ -176,11 +207,11 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log('SERVIDOR INICIADO COM SUCESSO!');
   console.log(`Porta: ${PORT}`);
   console.log(`IP Local: http://localhost:${PORT}`);
-  console.log(`IP Rede: http://10.136.23.234:${PORT}`);
+  console.log(`IP Rede: http://192.168.15.136:${PORT}`);
   console.log('TESTES DISPONÍVEIS:');
-  console.log(`• API Status: http://10.136.23.234:${PORT}/`);
-  console.log(`• Teste DB: http://10.136.23.234:${PORT}/test-db`);
-  console.log(`• Funcionários: http://10.136.23.234:${PORT}/cadastrof`);
+  console.log(`• API Status: http://192.168.15.136:${PORT}/`);
+  console.log(`• Teste DB: http://192.168.15.136:${PORT}/test-db`);
+  console.log(`• Funcionários: http://192.168.15.136:${PORT}/cadastrof`);
 });
 
 process.on('uncaughtException', (error) => {
