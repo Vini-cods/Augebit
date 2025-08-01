@@ -60,7 +60,7 @@ export default function Agendamento() {
 const menuItems = [
   { id: 0, icon: "home", label: "Início", screen: "Inicio" }, 
   { id: 1, icon: "calendar", label: "Agendamentos", screen: "Agendamento" },
-  { id: 2, icon: "cube", label: "Cursos", screen: "Cursos" },
+  { id: 2, icon: "book", label: "Cursos", screen: "CursosMenu" },
 ];
 
   const accountItems = [
